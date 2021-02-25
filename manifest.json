@@ -1,0 +1,28 @@
+{
+
+  "manifest_version": 2,
+  "name": "let-me-in",
+  "version": "1.0",
+
+  "description": "Alerts you in the browser whenever an MIQ slot pops. Does not fill in the booking.",
+  "icons": {
+    "48": "icons/let-me-in.png"
+  },
+  "permissions": ["notifications", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://allocation.miq.govt.nz/portal/organisation/*/MIQ-DEFAULT-EVENT/*", "https://allocation.miq.govt.nz/portal/"],
+      "js": ["let-me-in.js"]
+    }
+  ],
+
+   "options_ui": {
+	   "page": "options.html"
+   },
+   
+   "browser_specific_settings": {
+	   "gecko": {
+		   "id": "addon@example.com"
+	   }
+   }
+}
