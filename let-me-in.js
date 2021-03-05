@@ -1,23 +1,23 @@
-let url = window.location.href;
-let delay = 3000;
+const url = window.location.href;
+browser.storage.sync.get(["interval", "start_date", "end_date"]).then(function(results) {
 
-watchDates = function() {
-	fetch(url).then(function(response) {
-		if (response.ok) {
-			return response.text();
-		} else {
-			console.log('Request Failed');
-			return Promise.reject(response);
-		}
-	}).then(function(data) {
-		let parser = new DOMParser();
-		let el = parser.parseFromString(data, 'text/html');
-		let ret = el.getElementById("accommodation-calendar-home");
-		if (ret){
-			dates_raw = ret.getAttribute("data-arrival-dates");
-			if (dates_raw) {
-				let dates = dates_raw.split('_');
-				let getting = browser.storage.sync.get(["start_date", "end_date"]).then(function(results) {
+	console.log(results.interval);
+	watchDates = function() {
+		fetch(url).then(function(response) {
+			if (response.ok) {
+				return response.text();
+			} else {
+				console.log('Request Failed');
+				return Promise.reject(response);
+			}
+		}).then(function(data) {
+			let parser = new DOMParser();
+			let el = parser.parseFromString(data, 'text/html');
+			let ret = el.getElementById("accommodation-calendar-home");
+			if (ret){
+				dates_raw = ret.getAttribute("data-arrival-dates");
+				if (dates_raw) {
+					let dates = dates_raw.split('_');
 					let start_date = Date.parse(results.start_date);
 					let end_date  = Date.parse(results.end_date);
 					let dates_in_range = [];
@@ -34,18 +34,18 @@ watchDates = function() {
 					} else {
 						console.log("No spaces in range " + results.start_date + " to " + results.end_date + ": " + dates);
 					}
-				});
+				} else {
+					console.log("No dates available");
+				}
 			} else {
-				console.log("No dates available");
 			}
-		} else {
-		}
+		});
+	}
+
+	Notification.requestPermission().then(function(result) {
+		  console.log(result);
 	});
-}
 
-Notification.requestPermission().then(function(result) {
-	  console.log(result);
+	setInterval(watchDates, 1000 * results.interval);
 });
-
-setInterval(watchDates, delay);
 

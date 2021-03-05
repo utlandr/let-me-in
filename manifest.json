@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["https://allocation.miq.govt.nz/portal/organisation/*/MIQ-DEFAULT-EVENT/*", "https://allocation.miq.govt.nz/portal/"],
-      "js": ["let-me-in.js"]
+      "js": ["let-me-in.js", "options.js"]
     }
   ],
 

@@ -11,6 +11,7 @@ This is not an official mozilla addon:
 1. 'about:debugging' 
 2. `This Firefox`
 3. `Load Temporary Add-on...`
+4. Select `manifest.json` located in the project
 
 ## Usage
 
@@ -22,5 +23,5 @@ In another tab, you can log into your account and make your booking.
 
 ## Custom date range
 
-Go to `about:addons`  and open the prefences tab for the addon to set up a custom start and end date range.
+Go to `about:addons` and open the preferences tab for `let-me-in` to customise date range and the polling interval.
 
