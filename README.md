@@ -17,7 +17,7 @@ This is not an official mozilla addon:
 
 Go to `https://allocation.miq.govt.nz/portal/`
 
-The addon will now watch every 3 seconds for any new spaces, alerting you via a notification when a space is available.
+The addon will now watch every 5 seconds for any new spaces, alerting you via a notification when a space is available.
 
 In another tab, you can log into your account and make your booking.
 
