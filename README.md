@@ -4,6 +4,8 @@ A thing I hacked together that retrieves available managed isolation slots from 
 
 Now exists as a firefox addon.
 
+**NOTE: This addon does not automate selecting/reserving an MIQ slot**
+
 ## Installation
 
 This is not an official mozilla addon:
