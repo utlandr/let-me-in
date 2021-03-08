@@ -16,6 +16,7 @@ browser.storage.sync.get(["interval", "start_date", "end_date"]).then(function(r
 			let ret = el.getElementById("accommodation-calendar-home");
 			if (ret){
 				dates_raw = ret.getAttribute("data-arrival-dates");
+				date_max = Date.parse(ret.getAttribute("data-max-date"));
 				if (dates_raw) {
 					let dates = dates_raw.split('_');
 					let start_date = Date.parse(results.start_date);
@@ -23,7 +24,7 @@ browser.storage.sync.get(["interval", "start_date", "end_date"]).then(function(r
 					let dates_in_range = [];
 					for (let i in dates) {
 						let date = Date.parse(dates[i]);
-						if (start_date <= date && date <= end_date)
+						if (start_date <= date && date <= end_date && date <= date_max)
 							dates_in_range.push(dates[i]);
 					}
 					if (dates_in_range.length > 0) {
